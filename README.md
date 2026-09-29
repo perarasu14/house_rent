@@ -2,12 +2,6 @@
 
 <div align="center">
 
-[![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Express.js](https://img.shields.io/badge/Express.js-4.19.2-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose_8.4-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![Vite](https://img.shields.io/badge/Vite-5.2-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![JWT](https://img.shields.io/badge/JWT-Secure_Auth-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
 
 <br/>
 
@@ -23,7 +17,7 @@
 
 | Deliverable | Resource Link | Details |
 |---|---|---|
-| 📄 **Project Documentation** | [Google Drive Document Folder](https://drive.google.com/drive/folders/16U9R_6tr8m4g5V83rHw4mP5Q354kS5xl?usp=drive_link) | Comprehensive project report, SRS, and architecture documentation |
+| 📄 **Project Documentation** | [Google Drive Document Folder](https://drive.google.com/drive/folders/1f628nrKGN7GKkjcBvWrE-TDvGbOnQmGa?usp=sharing) | Comprehensive project report, SRS, and architecture documentation |
 | 🎥 **Project Demo Video** | [Google Drive Video Folder](https://drive.google.com/drive/folders/1OJ9HhmjlHmJNF3zqCxKjB3lJgKmYYCOd?usp=drive_link) | Complete product demonstration and feature walkthrough video |
 
 ---
