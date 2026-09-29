@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { FavoritesProvider } from './context/FavoritesContext';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import ProtectedRoute from './components/common/ProtectedRoute';
@@ -20,51 +21,53 @@ import './App.css';
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <div className="d-flex flex-column min-vh-100">
-          <Navbar />
-          <main className="flex-grow-1">
-            <Routes>
-              {/* Public Routes */}
-              <Route path="/" element={<HomePage />} />
-              <Route path="/properties" element={<PropertiesPage />} />
-              <Route path="/properties/:id" element={<PropertyDetailsPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
+      <FavoritesProvider>
+        <Router>
+          <div className="d-flex flex-column min-vh-100 bg-page">
+            <Navbar />
+            <main className="flex-grow-1">
+              <Routes>
+                {/* Public Routes */}
+                <Route path="/" element={<HomePage />} />
+                <Route path="/properties" element={<PropertiesPage />} />
+                <Route path="/properties/:id" element={<PropertyDetailsPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
 
-              {/* Protected Routes */}
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <DashboardPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/properties/new"
-                element={
-                  <ProtectedRoute allowedRoles={['owner', 'admin']}>
-                    <AddEditPropertyPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/properties/:id/edit"
-                element={
-                  <ProtectedRoute allowedRoles={['owner', 'admin']}>
-                    <AddEditPropertyPage />
-                  </ProtectedRoute>
-                }
-              />
+                {/* Protected Routes */}
+                <Route
+                  path="/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <DashboardPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/properties/new"
+                  element={
+                    <ProtectedRoute allowedRoles={['owner', 'admin']}>
+                      <AddEditPropertyPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/properties/:id/edit"
+                  element={
+                    <ProtectedRoute allowedRoles={['owner', 'admin']}>
+                      <AddEditPropertyPage />
+                    </ProtectedRoute>
+                  }
+                />
 
-              {/* Catch-all 404 */}
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
+                {/* Catch-all 404 */}
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </FavoritesProvider>
     </AuthProvider>
   );
 }

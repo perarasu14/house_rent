@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Lock, Mail, User, Phone, Home, AlertCircle, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Lock, Mail, User, Phone, Home, AlertCircle, ArrowRight, CheckCircle2, Shield, Key } from 'lucide-react';
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
@@ -52,176 +52,158 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="py-5 bg-light min-vh-100 d-flex align-items-center">
-      <div className="container" style={{ maxWidth: 520 }}>
+    <div className="auth-container bg-page">
+      <div className="auth-mesh"></div>
+
+      <div className="auth-card" style={{ maxWidth: 540 }}>
         {/* Brand Header */}
         <div className="text-center mb-4">
           <Link to="/" className="d-inline-flex align-items-center gap-2 text-decoration-none mb-3">
-            <div
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: 12,
-                background: 'linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#ffffff',
-              }}
-            >
-              <Home size={26} />
+            <div className="brand-logo-icon">
+              <Home size={22} strokeWidth={2.5} />
             </div>
             <span className="brand-font fs-2 fw-bold text-dark">
-              House<span style={{ color: '#4f46e5' }}>Hunt</span>
+              House<span style={{ color: 'var(--color-brand-600)' }}>Hunt</span>
             </span>
           </Link>
-          <h4 className="fw-bold text-dark">Create Your Free Account</h4>
-          <p className="text-muted small">Join thousands of happy tenants and property owners</p>
+          <h4 className="fw-bold text-dark brand-font">Join the Marketplace</h4>
+          <p className="text-muted small">Connect directly with verified landlords and renters</p>
         </div>
 
-        {/* Registration Card */}
-        <div className="bg-white p-4 p-md-5 rounded-4 border shadow-sm">
-          {error && (
-            <div className="alert alert-danger d-flex align-items-center gap-2 py-2 px-3 small rounded-3 mb-3">
-              <AlertCircle size={16} className="flex-shrink-0" />
-              <span>{error}</span>
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit}>
-            {/* Account Role Selector */}
-            <div className="mb-4">
-              <label className="form-label small fw-semibold text-dark mb-2">
-                I want to join as:
-              </label>
-              <div className="row g-2">
-                <div className="col-6">
-                  <div
-                    onClick={() => setRole('tenant')}
-                    className={`p-3 rounded-3 border text-center cursor-pointer ${
-                      role === 'tenant'
-                        ? 'border-primary bg-primary-subtle text-primary fw-bold'
-                        : 'bg-light text-secondary'
-                    }`}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <div className="fs-5 mb-1">🔑</div>
-                    <div className="small">Tenant / Renter</div>
-                  </div>
-                </div>
-                <div className="col-6">
-                  <div
-                    onClick={() => setRole('owner')}
-                    className={`p-3 rounded-3 border text-center cursor-pointer ${
-                      role === 'owner'
-                        ? 'border-primary bg-primary-subtle text-primary fw-bold'
-                        : 'bg-light text-secondary'
-                    }`}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <div className="fs-5 mb-1">🏡</div>
-                    <div className="small">Landlord / Owner</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Name */}
-            <div className="mb-3">
-              <label className="form-label small fw-semibold text-dark">Full Name</label>
-              <div className="input-group">
-                <span className="input-group-text bg-light border-end-0">
-                  <User size={16} className="text-muted" />
-                </span>
-                <input
-                  type="text"
-                  className="form-control form-control-modern border-start-0"
-                  placeholder="e.g. Rahul Sharma"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div className="mb-3">
-              <label className="form-label small fw-semibold text-dark">Email Address</label>
-              <div className="input-group">
-                <span className="input-group-text bg-light border-end-0">
-                  <Mail size={16} className="text-muted" />
-                </span>
-                <input
-                  type="email"
-                  className="form-control form-control-modern border-start-0"
-                  placeholder="rahul@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Phone */}
-            <div className="mb-3">
-              <label className="form-label small fw-semibold text-dark">Phone Number (Optional)</label>
-              <div className="input-group">
-                <span className="input-group-text bg-light border-end-0">
-                  <Phone size={16} className="text-muted" />
-                </span>
-                <input
-                  type="tel"
-                  className="form-control form-control-modern border-start-0"
-                  placeholder="+91 98765 43210"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </div>
-            </div>
-
-            {/* Password */}
-            <div className="mb-4">
-              <label className="form-label small fw-semibold text-dark">Password</label>
-              <div className="input-group">
-                <span className="input-group-text bg-light border-end-0">
-                  <Lock size={16} className="text-muted" />
-                </span>
-                <input
-                  type="password"
-                  className="form-control form-control-modern border-start-0"
-                  placeholder="At least 6 characters"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  minLength={6}
-                />
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              className="btn btn-househunt-primary w-100 py-2 mb-3 fw-bold"
-              disabled={loading}
-            >
-              {loading ? (
-                <>
-                  <span className="spinner-border spinner-border-sm me-2" role="status"></span>
-                  Creating Account...
-                </>
-              ) : (
-                <>
-                  Register & Continue <ArrowRight size={16} />
-                </>
-              )}
-            </button>
-          </form>
-
-          <div className="text-center text-muted small mt-3">
-            Already have an account?{' '}
-            <Link to="/login" className="text-primary fw-bold text-decoration-none">
-              Sign In
-            </Link>
+        {/* Error Feedback */}
+        {error && (
+          <div className="alert alert-danger d-flex align-items-center gap-2 py-2 px-3 small rounded-3 mb-3">
+            <AlertCircle size={16} className="flex-shrink-0" />
+            <span>{error}</span>
           </div>
+        )}
+
+        <form onSubmit={handleSubmit}>
+          {/* Role Picker Radio Cards */}
+          <div className="mb-4">
+            <label className="form-label small fw-bold text-dark mb-2">
+              Select Your Role
+            </label>
+            <div className="row g-2">
+              <div className="col-6">
+                <div
+                  onClick={() => setRole('tenant')}
+                  className={`role-select-box ${role === 'tenant' ? 'selected' : ''}`}
+                >
+                  <Key size={24} className="text-primary mb-1 mx-auto" />
+                  <div className="fw-bold small text-dark">I am a Tenant</div>
+                  <div className="text-muted" style={{ fontSize: '0.72rem' }}>Looking to rent homes</div>
+                </div>
+              </div>
+
+              <div className="col-6">
+                <div
+                  onClick={() => setRole('owner')}
+                  className={`role-select-box ${role === 'owner' ? 'selected' : ''}`}
+                >
+                  <Home size={24} className="text-warning mb-1 mx-auto" />
+                  <div className="fw-bold small text-dark">I am a Landlord</div>
+                  <div className="text-muted" style={{ fontSize: '0.72rem' }}>Looking to list homes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Full Name */}
+          <div className="mb-3">
+            <label className="form-label small fw-bold text-dark">Full Name</label>
+            <div className="input-group">
+              <span className="input-group-text bg-white border-end-0">
+                <User size={16} className="text-muted" />
+              </span>
+              <input
+                type="text"
+                className="form-control form-input-luxe border-start-0"
+                placeholder="Rahul Verma"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+
+          {/* Email */}
+          <div className="mb-3">
+            <label className="form-label small fw-bold text-dark">Email Address</label>
+            <div className="input-group">
+              <span className="input-group-text bg-white border-end-0">
+                <Mail size={16} className="text-muted" />
+              </span>
+              <input
+                type="email"
+                className="form-control form-input-luxe border-start-0"
+                placeholder="name@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+
+          {/* Phone */}
+          <div className="mb-3">
+            <label className="form-label small fw-bold text-dark">Phone Number</label>
+            <div className="input-group">
+              <span className="input-group-text bg-white border-end-0">
+                <Phone size={16} className="text-muted" />
+              </span>
+              <input
+                type="tel"
+                className="form-control form-input-luxe border-start-0"
+                placeholder="+91 98765 43210"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* Password */}
+          <div className="mb-4">
+            <label className="form-label small fw-bold text-dark">Password</label>
+            <div className="input-group">
+              <span className="input-group-text bg-white border-end-0">
+                <Lock size={16} className="text-muted" />
+              </span>
+              <input
+                type="password"
+                className="form-control form-input-luxe border-start-0"
+                placeholder="At least 6 characters"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="btn btn-luxe-primary w-100 py-3 mb-3 fw-bold fs-6"
+            style={{ borderRadius: 'var(--radius-md)' }}
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <span className="spinner-border spinner-border-sm me-2" role="status"></span>
+                Creating Profile...
+              </>
+            ) : (
+              <>
+                Complete Registration <ArrowRight size={16} />
+              </>
+            )}
+          </button>
+        </form>
+
+        <div className="text-center text-muted small mt-3">
+          Already have an account?{' '}
+          <Link to="/login" className="text-primary fw-bold text-decoration-none">
+            Sign In
+          </Link>
         </div>
       </div>
     </div>
